@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://12xsbj8eijs6"
-path="res://.godot/imported/9_Shopping_Center_and_Markets_32x32.png-210fd7e2e1372b11388ae834828a8858.ctex"
+path="res://.godot/imported/9_Shopping_Center_and_Markets_32x32.png-fe17d24e17c41a9980dfebb4881f5a6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Env/9_Shopping_Center_and_Markets_32x32.png"
-dest_files=["res://.godot/imported/9_Shopping_Center_and_Markets_32x32.png-210fd7e2e1372b11388ae834828a8858.ctex"]
+source_file="res://Assets/Env/Exterior/9_Shopping_Center_and_Markets_32x32.png"
+dest_files=["res://.godot/imported/9_Shopping_Center_and_Markets_32x32.png-fe17d24e17c41a9980dfebb4881f5a6d.ctex"]
 
 [params]
 

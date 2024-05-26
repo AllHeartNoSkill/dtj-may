@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diq52oqobqjxo"
-path="res://.godot/imported/5_Floor_Modular_Buildings_32x32.png-f9021e03051c82c38266dc0a59e6c72f.ctex"
+uid="uid://dmn7qu83ofukv"
+path="res://.godot/imported/2_LivingRoom_32x32.png-3cea213e71d500080737aeb348d6c841.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Env/5_Floor_Modular_Buildings_32x32.png"
-dest_files=["res://.godot/imported/5_Floor_Modular_Buildings_32x32.png-f9021e03051c82c38266dc0a59e6c72f.ctex"]
+source_file="res://Assets/Env/Interior/2_LivingRoom_32x32.png"
+dest_files=["res://.godot/imported/2_LivingRoom_32x32.png-3cea213e71d500080737aeb348d6c841.ctex"]
 
 [params]
 
