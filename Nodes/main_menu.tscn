@@ -12267,24 +12267,23 @@ vertical_alignment = 1
 [node name="Buttons" type="Node" parent="Background"]
 
 [node name="Play" type="Button" parent="Background/Buttons"]
-offset_left = 343.0
-offset_top = 247.0
-offset_right = 793.0
-offset_bottom = 403.0
+offset_left = 406.0
+offset_top = 303.0
+offset_right = 659.0
+offset_bottom = 391.0
 flat = true
 icon_alignment = 1
 
-[node name="Play" type="Sprite2D" parent="Background/Buttons/Play"]
-position = Vector2(225, 77.25)
-scale = Vector2(7.03125, 4.85937)
+[node name="Play3" type="Sprite2D" parent="Background/Buttons/Play"]
+position = Vector2(126.392, 44.25)
+scale = Vector2(3.95649, 2.73437)
 texture = ExtResource("2_eumqs")
 
 [node name="Play2" type="Label" parent="Background/Buttons/Play"]
 modulate = Color(1, 0.446705, 0.330185, 1)
 layout_mode = 0
-offset_top = -2.0
-offset_right = 452.0
-offset_bottom = 156.0
+offset_right = 253.0
+offset_bottom = 89.0
 theme_type_variation = &"HeaderLarge"
 text = "Play"
 horizontal_alignment = 1
@@ -12293,23 +12292,24 @@ uppercase = true
 
 [node name="Exit" type="Button" parent="Background/Buttons"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 343.0
-offset_top = 447.0
-offset_right = 795.0
-offset_bottom = 603.0
+offset_left = 406.0
+offset_top = 442.0
+offset_right = 658.0
+offset_bottom = 530.0
 flat = true
 icon_alignment = 1
 
-[node name="Exit" type="Sprite2D" parent="Background/Buttons/Exit"]
-position = Vector2(225, 79.25)
-scale = Vector2(7.03125, 4.85937)
+[node name="Exit3" type="Sprite2D" parent="Background/Buttons/Exit"]
+position = Vector2(125.904, 44.3125)
+scale = Vector2(3.95084, 2.73047)
 texture = ExtResource("2_eumqs")
 
 [node name="Exit2" type="Label" parent="Background/Buttons/Exit"]
 modulate = Color(1, 0.446705, 0.330185, 1)
 layout_mode = 0
-offset_right = 450.0
-offset_bottom = 157.0
+offset_left = -1.0
+offset_right = 253.0
+offset_bottom = 88.0
 theme_type_variation = &"HeaderLarge"
 text = "Exit"
 horizontal_alignment = 1
@@ -12317,3 +12317,4 @@ vertical_alignment = 1
 uppercase = true
 
 [connection signal="pressed" from="Background/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Background/Buttons/Exit" to="." method="_on_exit_pressed"]
