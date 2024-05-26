@@ -50,6 +50,7 @@ public partial class TimelineHandler : Node3D
 	public void ChangePlayerTimeline(Timeline timeline)
 	{
 		_playerCurrentTimeline = timeline;
+		GameEvents.Instance.TimelineDoneChanging();
 	}
 
 	public void OpenTimelineGraph()

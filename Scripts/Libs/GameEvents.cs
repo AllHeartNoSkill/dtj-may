@@ -28,6 +28,12 @@ public partial class GameEvents : Node
         OnTimelineChanged?.Invoke(id);
     }
 
+    public Action OnTimelineDoneChanging;
+    public void TimelineDoneChanging()
+    {
+        OnTimelineDoneChanging?.Invoke();
+    }
+
     public Action<string> OnActivateButtonTimeline;
     public void ActivateButtonTimeline(string id)
     {

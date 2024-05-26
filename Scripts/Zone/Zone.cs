@@ -19,18 +19,24 @@ public partial class Zone : Node2D
 	private ZoneState _zoneState;
 
 	private PlayerControl _playerControl;
+
+	private bool _isPlayerInside = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		GameEvents.Instance.OnEnterZone += OnEnterZone;
 		GameEvents.Instance.OnExitZone += OnExitZone;
+
+		GameEvents.Instance.OnTimelineDoneChanging += OnTimelineDoneChanging;
 	}
 
 	public override void _ExitTree()
 	{
 		GameEvents.Instance.OnEnterZone -= OnEnterZone;	
 		GameEvents.Instance.OnExitZone -= OnExitZone;
+		
+		GameEvents.Instance.OnTimelineDoneChanging -= OnTimelineDoneChanging;
 	}
 	
 	private void OnEnterZone(string zoneName)
@@ -95,6 +101,7 @@ public partial class Zone : Node2D
 
 		(_playerControl.GetParent() as Node2D).GlobalPosition = _enterPoint.GlobalPosition;
 		GameEvents.Instance.EnterZone(_zoneName);
+		_isPlayerInside = true;
 	}
 
 	public void ExitZone()
@@ -107,9 +114,10 @@ public partial class Zone : Node2D
 
 		(_playerControl.GetParent() as Node2D).GlobalPosition = _doorEnter.GlobalPosition;
 		GameEvents.Instance.ExitZone(_zoneName);
+		_isPlayerInside = false;
 	}
 
-	private void OnTimelineChanged(string id)
+	private void OnTimelineDoneChanging()
 	{
 		_currentTimeline = TimelineHandler.Instance.GetPlayerCurrentTimeline();
 		ScenarioData scenarioData = _currentTimeline.ScenarioData;
@@ -118,25 +126,26 @@ public partial class Zone : Node2D
 		{
 			case "Bakery":
 				_zoneState = scenarioData.BakeryScenario;
+				GD.Print($"BAKERY {_zoneState} {_currentTimeline.Time}");
 				break;
 			case "Restaurant":
 				_zoneState = scenarioData.RestaurantScenario;
+				GD.Print($"RESTAURANT {_zoneState} {_currentTimeline.Time}");
 				break;
 			case "WatchStore":
 				_zoneState = scenarioData.WatchStoreScenario;
+				GD.Print($"WATCH STORE {_zoneState} {_currentTimeline.Time}");
 				break;
 			case "MusicStore":
 				_zoneState = scenarioData.MusicStoreScenario;
+				GD.Print($"MUSIC STORE {_zoneState} {_currentTimeline.Time}");
 				break;
 		}
 
-		if (_zoneState == ZoneState.Open)
+		if (_isPlayerInside)
 		{
-			_doorEnter.ProcessMode = ProcessModeEnum.Inherit;
+			ExitZone();
 		}
-		else
-		{
-			_doorEnter.ProcessMode = ProcessModeEnum.Disabled;
-		}
+		_doorEnter.ProcessMode = _zoneState == ZoneState.Open ? ProcessModeEnum.Inherit : ProcessModeEnum.Disabled;
 	}
 }

@@ -39,7 +39,7 @@ _timelinePrefab = ExtResource("3_qrrv8")
 
 [node name="MusicStore" type="Node2D" parent="." node_paths=PackedStringArray("_doorEnter", "_doorExit", "_enterPrompt", "_exitPrompt", "_interior", "_enterPoint", "_exterior")]
 script = ExtResource("4_5a6xk")
-_zoneName = "Music Store"
+_zoneName = "MusicStore"
 _doorEnter = NodePath("EnterDoor")
 _doorExit = NodePath("MusicStoreInterior/ExitDoor2")
 _enterPrompt = NodePath("Enter Prompt")
@@ -128,7 +128,7 @@ shortcut_keys_enabled = false
 
 [node name="WatchStore" type="Node2D" parent="." node_paths=PackedStringArray("_doorEnter", "_doorExit", "_enterPrompt", "_exitPrompt", "_interior", "_enterPoint", "_exterior")]
 script = ExtResource("4_5a6xk")
-_zoneName = "Watch Store"
+_zoneName = "WatchStore"
 _doorEnter = NodePath("EnterDoor3")
 _doorExit = NodePath("WatchStoreInterior/ExitDoor3")
 _enterPrompt = NodePath("Enter Prompt3")
@@ -396,7 +396,6 @@ text = "[center]Exit Bakery[/center]"
 shortcut_keys_enabled = false
 
 [node name="TimelineUI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchor_top = 0.714
 anchor_right = 1.0
