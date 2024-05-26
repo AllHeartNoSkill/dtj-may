@@ -21,10 +21,12 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.play("Idle")
 		
-	position += velocity * delta
+	move_and_collide(velocity * delta)
 	
-	if velocity.x != 0:
+	if velocity != Vector2.ZERO:
 		$AnimatedSprite2D.animation = "Run"
 		$AnimatedSprite2D.flip_v = false
 		# See the note below about boolean assignment.
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+		
+	if velocity.x != 0:
+		$AnimatedSprite2D.flip_h = velocity.x > 0

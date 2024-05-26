@@ -4,7 +4,7 @@ public partial class InteractAction : ActorAction
 {
     public override void InitiateAction()
     {
-        
+        base.InitiateAction();
     }
 
     public override void ActionDone()

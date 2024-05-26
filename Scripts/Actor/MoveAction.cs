@@ -13,6 +13,7 @@ public partial class MoveAction : ActorAction
 
     public override void InitiateAction()
     {
+        base.InitiateAction();
         _isMoving = true;
         TheActor.GlobalPosition = _startPos;
         _moveDirection = (_endPos - _startPos).Normalized();

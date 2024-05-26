@@ -12,7 +12,8 @@ public partial class ActorAction : Node2D
 
     public virtual void InitiateAction()
     {
-        
+        TheActor.Visible = true;
+        TheActor.ProcessMode = ProcessModeEnum.Inherit;
     }
 
     public virtual void ActionDone()

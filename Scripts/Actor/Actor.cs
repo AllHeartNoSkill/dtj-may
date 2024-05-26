@@ -6,6 +6,7 @@ using Range = System.Range;
 public partial class Actor : CharacterBody2D
 {
 	[Export] private Array<ActorAction> _possibleActions = new Array<ActorAction>();
+	[Export] private ActorAction _hideAction;
 	
 	private Timeline _currentTimeline;
 	private ActorAction _currentAction;
@@ -13,7 +14,7 @@ public partial class Actor : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		GameEvents.Instance.OnTimelineLoaded += OnTimelineLoaded;
+		GameEvents.Instance.OnTimelineChanged += OnTimelineChanged;
 	}
 
 	private void Start()
@@ -23,17 +24,17 @@ public partial class Actor : CharacterBody2D
 
 	public override void _ExitTree()
 	{
-		GameEvents.Instance.OnTimelineLoaded -= OnTimelineLoaded;
+		GameEvents.Instance.OnTimelineChanged -= OnTimelineChanged;
 	}
 
-	private void OnTimelineLoaded()
+	private void OnTimelineChanged(string id)
 	{
 		GetActorDataFromTimeline();
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		MoveAndSlide();
+		MoveAndCollide(Velocity * (float)delta);
 	}
 
 	public void RegisterAction(ActorAction action)
@@ -50,8 +51,6 @@ public partial class Actor : CharacterBody2D
 		{
 			ChooseActionForCurrentTimeline();
 		}
-		
-		InitiateAction();
 	}
 
 	private void ChooseActionForCurrentTimeline()

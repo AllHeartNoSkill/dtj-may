@@ -5,14 +5,14 @@ public class ScenarioData
     [Export] public ZoneState BakeryScenario;
     [Export] public ZoneState RestaurantScenario;
     [Export] public ZoneState WatchStoreScenario;
-    [Export] public ZoneState BarScenario;
+    [Export] public ZoneState MusicStoreScenario;
 
-    public ScenarioData(ZoneState bakery, ZoneState restaurant, ZoneState watchStore, ZoneState bar)
+    public ScenarioData(ZoneState bakery, ZoneState restaurant, ZoneState watchStore, ZoneState musicStore)
     {
         BakeryScenario = bakery;
         RestaurantScenario = restaurant;
         WatchStoreScenario = watchStore;
-        BarScenario = bar;
+        MusicStoreScenario = musicStore;
     }
 }
 

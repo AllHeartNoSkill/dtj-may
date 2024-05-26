@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://675uqbyombyj"]
+[gd_scene load_steps=19 format=3 uid="uid://cqdifhfd1t44p"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_pab1s"]
 [ext_resource type="Texture2D" uid="uid://coumx1vud8bji" path="res://Assets/Agent/Chara idle.png" id="2_2jvn5"]
 [ext_resource type="Texture2D" uid="uid://dp6qug7042606" path="res://Assets/Agent/Chara walk.png" id="3_7ty7b"]
+[ext_resource type="Script" path="res://Scripts/Players/PlayerControl.cs" id="4_mnaxf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2tot"]
 atlas = ExtResource("2_2jvn5")
@@ -101,14 +102,17 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rhsvd"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8nt5k"]
 radius = 5.0
+height = 28.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_pab1s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -12)
+y_sort_enabled = true
+position = Vector2(0, -24.12)
+scale = Vector2(1.68, 1.68)
 sprite_frames = SubResource("SpriteFrames_ykeht")
 animation = &"Run"
 autoplay = "Idle"
@@ -116,5 +120,10 @@ frame = 1
 frame_progress = 0.037682
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_rhsvd")
+y_sort_enabled = true
+position = Vector2(0, -0.120003)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8nt5k")
+
+[node name="PlayerControl" type="Node2D" parent="."]
+script = ExtResource("4_mnaxf")

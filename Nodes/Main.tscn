@@ -1,15 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4idf8dot4g5x"]
+[gd_scene load_steps=14 format=3 uid="uid://d4idf8dot4g5x"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Main.cs" id="1_o1c8u"]
 [ext_resource type="Script" path="res://Scripts/Systems/TimelineHandler.cs" id="2_2huai"]
+[ext_resource type="PackedScene" path="res://Nodes/Env.tscn" id="2_c8raq"]
 [ext_resource type="PackedScene" uid="uid://bvympkedfyhh6" path="res://Nodes/Prefabs/Timeline.tscn" id="3_qrrv8"]
 [ext_resource type="Script" path="res://Scripts/Zone/Zone.cs" id="4_5a6xk"]
 [ext_resource type="Script" path="res://Scripts/Libs/GameEvents.cs" id="4_cgmsr"]
 [ext_resource type="PackedScene" uid="uid://nlpwg4ljb2s1" path="res://Nodes/Actors/ActorA.tscn" id="5_oaf7c"]
 [ext_resource type="Script" path="res://Scripts/UI/TimelineGraphButton.cs" id="7_rdc83"]
+[ext_resource type="PackedScene" uid="uid://cqdifhfd1t44p" path="res://Nodes/player_character.tscn" id="9_ecujk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtfae"]
+size = Vector2(61.26, 33.245)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vnqd"]
+size = Vector2(33.845, 33.245)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rti2b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c78q0"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_o1c8u")
+
+[node name="Env" parent="." instance=ExtResource("2_c8raq")]
 
 [node name="GameEvents" type="Node3D" parent="."]
 script = ExtResource("4_cgmsr")
@@ -18,40 +32,195 @@ script = ExtResource("4_cgmsr")
 script = ExtResource("2_2huai")
 _timelinePrefab = ExtResource("3_qrrv8")
 
-[node name="Bar" type="Node2D" parent="."]
+[node name="MusicStore" type="Node2D" parent="." node_paths=PackedStringArray("_doorEnter", "_enterPrompt")]
 script = ExtResource("4_5a6xk")
+_zoneName = "Music Store"
+_doorEnter = NodePath("EnterDoor")
+_enterPrompt = NodePath("Enter Prompt")
 
-[node name="WatchStore" type="Node2D" parent="."]
+[node name="EnterDoor" type="Area2D" parent="MusicStore"]
+position = Vector2(272, 337)
 
-[node name="Restaurant" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicStore/EnterDoor"]
+shape = SubResource("RectangleShape2D_wtfae")
 
-[node name="Bakery" type="Node2D" parent="."]
-
-[node name="ActorA" parent="." instance=ExtResource("5_oaf7c")]
-
-[node name="BottomUI" type="Control" parent="."]
+[node name="Enter Prompt" type="Control" parent="MusicStore"]
+visible = false
 layout_mode = 3
-anchor_top = 0.714
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 0
+offset_left = 204.0
+offset_top = 226.0
+offset_right = 352.0
+offset_bottom = 252.0
 
-[node name="ColorRect" type="ColorRect" parent="BottomUI"]
+[node name="ColorRect" type="ColorRect" parent="MusicStore/Enter Prompt"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.129559, 0.129558, 0.129558, 0.615686)
+color = Color(0.168627, 0.168627, 0.168627, 0.729412)
 
-[node name="GraphContainer" type="Control" parent="BottomUI"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MusicStore/Enter Prompt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Enter Music Store[/center]"
+shortcut_keys_enabled = false
+
+[node name="WatchStore" type="Node2D" parent="." node_paths=PackedStringArray("_doorEnter", "_enterPrompt")]
+script = ExtResource("4_5a6xk")
+_zoneName = "Watch Store"
+_doorEnter = NodePath("EnterDoor3")
+_enterPrompt = NodePath("Enter Prompt3")
+
+[node name="EnterDoor3" type="Area2D" parent="WatchStore"]
+position = Vector2(688, 337)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WatchStore/EnterDoor3"]
+shape = SubResource("RectangleShape2D_6vnqd")
+
+[node name="Enter Prompt3" type="Control" parent="WatchStore"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 614.0
+offset_top = 226.0
+offset_right = 762.0
+offset_bottom = 252.0
+
+[node name="ColorRect" type="ColorRect" parent="WatchStore/Enter Prompt3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.168627, 0.168627, 0.729412)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WatchStore/Enter Prompt3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Enter Watch Store[/center]"
+shortcut_keys_enabled = false
+
+[node name="Restaurant" type="Node2D" parent="." node_paths=PackedStringArray("_doorEnter", "_enterPrompt")]
+script = ExtResource("4_5a6xk")
+_zoneName = "Restaurant"
+_doorEnter = NodePath("EnterDoor4")
+_enterPrompt = NodePath("Enter Prompt4")
+
+[node name="EnterDoor4" type="Area2D" parent="Restaurant"]
+position = Vector2(783, 478)
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Restaurant/EnterDoor4"]
+shape = SubResource("RectangleShape2D_wtfae")
+
+[node name="Enter Prompt4" type="Control" parent="Restaurant"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 806.0
+offset_top = 459.0
+offset_right = 954.0
+offset_bottom = 485.0
+
+[node name="ColorRect" type="ColorRect" parent="Restaurant/Enter Prompt4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.168627, 0.168627, 0.729412)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Restaurant/Enter Prompt4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Enter Restaurant[/center]"
+shortcut_keys_enabled = false
+
+[node name="Bakery" type="Node2D" parent="." node_paths=PackedStringArray("_doorEnter", "_enterPrompt")]
+script = ExtResource("4_5a6xk")
+_zoneName = "Bakery"
+_doorEnter = NodePath("EnterDoor2")
+_enterPrompt = NodePath("Enter Prompt2")
+
+[node name="EnterDoor2" type="Area2D" parent="Bakery"]
+position = Vector2(592, 336)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bakery/EnterDoor2"]
+shape = SubResource("RectangleShape2D_wtfae")
+
+[node name="Enter Prompt2" type="Control" parent="Bakery"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 515.0
+offset_top = 226.0
+offset_right = 663.0
+offset_bottom = 252.0
+
+[node name="ColorRect" type="ColorRect" parent="Bakery/Enter Prompt2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.168627, 0.168627, 0.729412)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Bakery/Enter Prompt2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Enter Bakery[/center]"
+shortcut_keys_enabled = false
+
+[node name="TimelineUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_top = 0.714
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="TimelineUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.201684, 0.200663, 0.231796, 1)
+
+[node name="GraphContainer" type="Control" parent="TimelineUI"]
 layout_mode = 1
 anchor_left = 0.2
 anchor_top = 0.05
 anchor_right = 0.8
 anchor_bottom = 0.95
 
-[node name="Button" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,7 +238,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "1a"
 
-[node name="Button2" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button2" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,7 +256,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "2a"
 
-[node name="Button3" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button3" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -105,7 +274,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "2b"
 
-[node name="Button4" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button4" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -123,7 +292,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "3a"
 
-[node name="Button5" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button5" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -141,7 +310,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "3b"
 
-[node name="Button6" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button6" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -159,7 +328,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "3c"
 
-[node name="Button7" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button7" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -177,7 +346,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "4a"
 
-[node name="Button8" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button8" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -195,7 +364,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "4b"
 
-[node name="Button9" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button9" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -213,7 +382,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "5a"
 
-[node name="Button10" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button10" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -231,7 +400,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "5b"
 
-[node name="Button11" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button11" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -249,7 +418,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "5c"
 
-[node name="Button12" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button12" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -267,7 +436,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "5d"
 
-[node name="Button13" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button13" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -285,7 +454,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "6a"
 
-[node name="Button14" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button14" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -303,7 +472,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "6b"
 
-[node name="Button15" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button15" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -321,7 +490,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "7a"
 
-[node name="Button16" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button16" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -339,7 +508,7 @@ disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "7b"
 
-[node name="Button17" type="Button" parent="BottomUI/GraphContainer"]
+[node name="Button17" type="Button" parent="TimelineUI/GraphContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -356,3 +525,29 @@ focus_mode = 0
 disabled = true
 script = ExtResource("7_rdc83")
 _timelineId = "7c"
+
+[node name="ActorA" parent="." instance=ExtResource("5_oaf7c")]
+position = Vector2(441, 168)
+
+[node name="Player" parent="." instance=ExtResource("9_ecujk")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(298, 268)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CapsuleShape2D_rti2b")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(344, 248)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_c78q0")
+
+[connection signal="body_entered" from="MusicStore/EnterDoor" to="MusicStore" method="BodyEnteredDoorEnter"]
+[connection signal="body_exited" from="MusicStore/EnterDoor" to="MusicStore" method="BodyExitedDoorEnter"]
+[connection signal="body_entered" from="WatchStore/EnterDoor3" to="WatchStore" method="BodyEnteredDoorEnter"]
+[connection signal="body_exited" from="WatchStore/EnterDoor3" to="WatchStore" method="BodyExitedDoorEnter"]
+[connection signal="body_entered" from="Restaurant/EnterDoor4" to="Restaurant" method="BodyEnteredDoorEnter"]
+[connection signal="body_exited" from="Restaurant/EnterDoor4" to="Restaurant" method="BodyExitedDoorEnter"]
+[connection signal="body_entered" from="Bakery/EnterDoor2" to="Bakery" method="BodyEnteredDoorEnter"]
+[connection signal="body_exited" from="Bakery/EnterDoor2" to="Bakery" method="BodyExitedDoorEnter"]
