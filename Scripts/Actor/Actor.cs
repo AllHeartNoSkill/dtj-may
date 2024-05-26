@@ -58,6 +58,7 @@ public partial class Actor : CharacterBody2D
 	{
 		RandomNumberGenerator rng = new RandomNumberGenerator();
 		_currentAction = _possibleActions[rng.RandiRange(0, _possibleActions.Count - 1)];
+		_currentTimeline.SetActorAction(this, _currentAction);
 	}
 
 	private void InitiateAction()

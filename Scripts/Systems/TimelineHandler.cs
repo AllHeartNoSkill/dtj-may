@@ -8,9 +8,9 @@ public partial class TimelineHandler : Node3D
 	
 	[Export] private PackedScene _timelinePrefab;
 
-	[Export] private int _playerStartingDepth = 2;
+	[Export] private int _playerStartingDepth = 3;
+	[Export] private int _playerMoveDepth = 2;
 	
-	private TimelineTree _timelineTree;
 	private Timeline _playerCurrentTimeline;
 	private Timeline _currentTargetTimeline;
 
@@ -26,10 +26,12 @@ public partial class TimelineHandler : Node3D
 	{
 		Instance = this;
 		
-		CreateTimelineTree();
 		PopulateTimelineTree();
 		
+		GD.Print($"Player Timeline = {_playerCurrentTimeline.Time}");
+		
 		GameEvents.Instance.TimelineLoaded();
+		GameEvents.Instance.TimelineChanged(_playerCurrentTimeline.Id);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,112 +39,134 @@ public partial class TimelineHandler : Node3D
 	{
 	}
 
-	public void CreateTimelineTree()
+	public override void _Input(InputEvent @event)
 	{
-		_timelineTree = new TimelineTree("Timeline 1");
+		if (Input.IsKeyPressed(Key.O))
+		{
+			OpenTimelineGraph();
+		}
+	}
 
-		var timeline4A = new TimelineTree("Timeline 4A");
-		var timeline4B = new TimelineTree("Timeline 4B");
-		var timeline4C = new TimelineTree("Timeline 4C");
-		var timeline4D = new TimelineTree("Timeline 4D");
-		var timeline4E = new TimelineTree("Timeline 4E");
-		var timeline4F = new TimelineTree("Timeline 4F");
+	public void ChangePlayerTimeline(Timeline timeline)
+	{
+		_playerCurrentTimeline = timeline;
+	}
+
+	public void OpenTimelineGraph()
+	{
+		TraverseTree(_playerCurrentTimeline, 0);
+		GameEvents.Instance.TraverseTimelineDone();
+	}
+
+	private void TraverseTree(Timeline node, int depth)
+	{
+		if (depth > _playerMoveDepth)
+		{
+			return;
+		}
+
+		node.Traversed = true;
+		if (node != _playerCurrentTimeline)
+		{
+			GameEvents.Instance.ActivateButtonTimeline(node.Id);
+		}
 		
-		var timeline3A = new TimelineTree("Timeline 3A");
-		var timeline3B = new TimelineTree("Timeline 3B");
-		var timeline3C = new TimelineTree("Timeline 3C");
-		var timeline3D = new TimelineTree("Timeline 3D");
-		
-		var timeline2A = new TimelineTree("Timeline 2A");
-		var timeline2B = new TimelineTree("Timeline 2B");
-		
-		_timelineTree.RegisterChild(timeline2A);
-		_timelineTree.RegisterChild(timeline2B);
-		
-		timeline2A.RegisterChild(timeline3A);
-		
-		timeline2B.RegisterChild(timeline3B);
-		timeline2B.RegisterChild(timeline3C);
-		timeline2B.RegisterChild(timeline3D);
-		
-		timeline3A.RegisterChild(timeline4A);
-		timeline3A.RegisterChild(timeline4B);
-		timeline3A.RegisterChild(timeline4C);
-		
-		timeline3C.RegisterChild(timeline4D);
-		
-		timeline3D.RegisterChild(timeline4E);
-		timeline3D.RegisterChild(timeline4F);
+		foreach (var child in node.Child)
+		{
+			TraverseTree(child, depth + 1);
+		}
+
+		foreach (var parent in node.Parent)
+		{
+			TraverseTree(parent, depth + 1);
+		}
 	}
 
 	public void PopulateTimelineTree()
 	{
-		Timeline rootTimeline = _timelinePrefab.Instantiate() as Timeline;
-		rootTimeline.Name = _timelineTree.TimelineName;
-		AddChild(rootTimeline);
+		Timeline rootTimeline = new Timeline("1a", 7, new ScenarioData(ZoneState.Open, ZoneState.Closed, ZoneState.Closed, ZoneState.Closed));
 
-		TraverseTree(_timelineTree, rootTimeline, 0);
+		Timeline timeline2a = new Timeline("2a", 8, new ScenarioData(ZoneState.Open, ZoneState.Open, ZoneState.Closed, ZoneState.Closed));
+		Timeline timeline2b = new Timeline("2b", 8, new ScenarioData(ZoneState.Open, ZoneState.Closed, ZoneState.Closed, ZoneState.Closed));
+		
+		Timeline timeline3a = new Timeline("3a", 9, new ScenarioData(ZoneState.Open, ZoneState.Open, ZoneState.Closed, ZoneState.Closed));
+		Timeline timeline3b = new Timeline("3b", 9, new ScenarioData(ZoneState.Open, ZoneState.Open, ZoneState.Open, ZoneState.Closed));
+		Timeline timeline3c = new Timeline("3c", 9, new ScenarioData(ZoneState.Open, ZoneState.Closed, ZoneState.Closed, ZoneState.Closed));
+
+		Timeline timeline4a = new Timeline("4a", 10, new ScenarioData(ZoneState.Open, ZoneState.Open, ZoneState.Open, ZoneState.Open));
+		Timeline timeline4b = new Timeline("4b", 10, new ScenarioData(ZoneState.Open, ZoneState.Open, ZoneState.Open, ZoneState.Closed));
+
+		Timeline timeline5a = new Timeline("5a", 11, new ScenarioData(ZoneState.Closed, ZoneState.Open, ZoneState.OnBreak, ZoneState.Open));
+		Timeline timeline5b = new Timeline("5b", 11, new ScenarioData(ZoneState.Closed, ZoneState.Open, ZoneState.Open, ZoneState.Open));
+		Timeline timeline5c = new Timeline("5c", 11, new ScenarioData(ZoneState.Open, ZoneState.Open, ZoneState.OnBreak, ZoneState.Open));
+		Timeline timeline5d = new Timeline("5d", 11, new ScenarioData(ZoneState.Open, ZoneState.Open, ZoneState.Open, ZoneState.Open));
+
+		Timeline timeline6a = new Timeline("6a", 12, new ScenarioData(ZoneState.Closed, ZoneState.Open, ZoneState.OnBreak, ZoneState.Open));
+		Timeline timeline6b = new Timeline("6b", 12, new ScenarioData(ZoneState.Closed, ZoneState.Open, ZoneState.Open, ZoneState.Open));
+
+		Timeline timeline7a = new Timeline("7a", 13, new ScenarioData(ZoneState.Closed, ZoneState.Open, ZoneState.Open, ZoneState.Closed));
+		Timeline timeline7b = new Timeline("7b", 13, new ScenarioData(ZoneState.Closed, ZoneState.Open, ZoneState.Open, ZoneState.Open));
+		Timeline timeline7c = new Timeline("7c", 13, new ScenarioData(ZoneState.Closed, ZoneState.Closed, ZoneState.Open, ZoneState.Open));
+		
+		rootTimeline.RegisterChild(timeline2a);
+		rootTimeline.RegisterChild(timeline2b);
+		
+		timeline2a.RegisterChild(timeline3a);
+		timeline2a.RegisterChild(timeline3b);
+		
+		timeline2b.RegisterChild(timeline3b);
+		timeline2b.RegisterChild(timeline3c);
+		
+		timeline3a.RegisterChild(timeline4a);
+		timeline3a.RegisterChild(timeline4b);
+		
+		timeline3b.RegisterChild(timeline4a);
+		timeline3b.RegisterChild(timeline4b);
+		
+		timeline3c.RegisterChild(timeline4a);
+		timeline3c.RegisterChild(timeline4b);
+
+		timeline4a.RegisterChild(timeline5a);
+		timeline4a.RegisterChild(timeline5b);
+		timeline4a.RegisterChild(timeline5c);
+		
+		timeline4b.RegisterChild(timeline5d);
+
+		timeline5a.RegisterChild(timeline6a);
+		
+		timeline5b.RegisterChild(timeline6a);
+		
+		timeline5c.RegisterChild(timeline6b);
+		
+		timeline5d.RegisterChild(timeline6a);
+		
+		timeline6a.RegisterChild(timeline7a);
+		timeline6a.RegisterChild(timeline7b);
+		timeline6a.RegisterChild(timeline7c);
+		
+		timeline6b.RegisterChild(timeline7a);
+		timeline6b.RegisterChild(timeline7b);
+		timeline6b.RegisterChild(timeline7c);
+		
+		PlacePlayerAndTargetInTree(rootTimeline, 0);
 	}
 
-	private void TraverseTree(TimelineTree node, Timeline currentTimeline, int depth)
+	private void PlacePlayerAndTargetInTree(Timeline currentTimeline, int depth)
 	{
-		for (int i = 0; i < node.Children.Count; i++)
+		for (int i = 0; i < currentTimeline.Child.Count; i++)
 		{
-			var child = node.Children[i];
-			
-			Timeline timeline = _timelinePrefab.Instantiate() as Timeline;
-			timeline.SetScenarioData(child.ScenarioData);
-			timeline.Name = child.TimelineName;
-			currentTimeline.AddChild(timeline);
-
-			if (!_playerPlaced && i >= Mathf.FloorToInt(node.Children.Count / 2f) && depth >= _playerStartingDepth)
+			var child = currentTimeline.Child[i];
+			if (!_playerPlaced && i >= Mathf.FloorToInt(currentTimeline.Child.Count / 2f) - 1 && depth >= _playerStartingDepth)
 			{
 				_playerPlaced = true;
-				_playerCurrentTimeline = timeline;
+				_playerCurrentTimeline = currentTimeline;
 			}
-			
-			TraverseTree(child, timeline, depth + 1);
+			PlacePlayerAndTargetInTree(child, depth + 1);
 		}
 	}
 
 	public Timeline GetPlayerCurrentTimeline()
 	{
 		return _playerCurrentTimeline;
-	}
-}
-
-
-public class TimelineTree
-{
-	public string TimelineName;
-	public ScenarioData ScenarioData;
-	public TimelineTree Parent;
-	public List<TimelineTree> Children;
-
-	public TimelineTree()
-	{
-		Children = new List<TimelineTree>();
-	}
-	
-	public TimelineTree(string name)
-	{
-		TimelineName = name;
-		Children = new List<TimelineTree>();
-	}
-
-	public TimelineTree(ScenarioData scenarioData, List<TimelineTree> children)
-	{
-		ScenarioData = scenarioData;
-		Children = children;
-	}
-
-	public void RegisterChild(TimelineTree child)
-	{
-		Children.Add(child);
-	}
-
-	public void SetChildren(List<TimelineTree> children)
-	{
-		Children = children;
 	}
 }
