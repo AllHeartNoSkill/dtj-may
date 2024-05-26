@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djocdlp1phki1"]
+
+[ext_resource type="Script" path="res://Scripts/Actor/InteractAction.cs" id="1_vbyk6"]
+
+[node name="InteractAction" type="Node2D"]
+script = ExtResource("1_vbyk6")

@@ -1,6 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4idf8dot4g5x"]
+[gd_scene load_steps=9 format=3 uid="uid://d4idf8dot4g5x"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Main.cs" id="1_o1c8u"]
+[ext_resource type="Script" path="res://Scripts/Systems/TimelineHandler.cs" id="2_2huai"]
+[ext_resource type="PackedScene" uid="uid://bvympkedfyhh6" path="res://Nodes/Prefabs/Timeline.tscn" id="3_qrrv8"]
+[ext_resource type="Script" path="res://Scripts/Libs/GameEvents.cs" id="4_cgmsr"]
+[ext_resource type="Script" path="res://Scripts/Actor/Actor.cs" id="4_munwt"]
+[ext_resource type="PackedScene" uid="uid://dtaa8eele3nl7" path="res://Nodes/ActionTemplate/MoveAction.tscn" id="6_pcatv"]
+[ext_resource type="Texture2D" uid="uid://biv6hydp8alnj" path="res://Sprites/temp-actor.png" id="7_dtchh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mvm2a"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_o1c8u")
+
+[node name="TimelineHandler" type="Node3D" parent="."]
+script = ExtResource("2_2huai")
+_timelinePrefab = ExtResource("3_qrrv8")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("4_cgmsr")
+
+[node name="ActorA2" type="CharacterBody2D" parent="."]
+script = ExtResource("4_munwt")
+
+[node name="Actions" type="Node2D" parent="ActorA2"]
+
+[node name="MoveAction" parent="ActorA2/Actions" instance=ExtResource("6_pcatv")]
+_startPos = Vector2(351, 215)
+_endPos = Vector2(600, 300)
+_moveSpeed = 10.0
+
+[node name="MoveAction2" parent="ActorA2/Actions" instance=ExtResource("6_pcatv")]
+_startPos = Vector2(351, 215)
+_endPos = Vector2(600, 215)
+_moveSpeed = 10.0
+
+[node name="Temp-actor" type="Sprite2D" parent="ActorA2"]
+scale = Vector2(0.098, 0.098)
+texture = ExtResource("7_dtchh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActorA2"]
+shape = SubResource("CapsuleShape2D_mvm2a")

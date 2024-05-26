@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvympkedfyhh6"]
+
+[ext_resource type="Script" path="res://Scripts/Timeline/Timeline.cs" id="1_7ymmh"]
+
+[node name="Timeline" type="Node3D"]
+script = ExtResource("1_7ymmh")

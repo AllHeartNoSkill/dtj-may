@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5fcnebc0d72g"]
+
+[ext_resource type="Script" path="res://Scripts/Actor/Actor.cs" id="1_nk248"]
+[ext_resource type="PackedScene" uid="uid://dtaa8eele3nl7" path="res://Nodes/ActionTemplate/MoveAction.tscn" id="2_vshac"]
+[ext_resource type="Texture2D" uid="uid://biv6hydp8alnj" path="res://Sprites/temp-actor.png" id="5_cq15c"]
+
+[node name="Actor" type="Node2D"]
+position = Vector2(351, 215)
+script = ExtResource("1_nk248")
+
+[node name="Actions" type="Node2D" parent="."]
+
+[node name="MoveAction" parent="Actions" instance=ExtResource("2_vshac")]
+_startPos = Vector2(351, 215)
+_endPos = Vector2(600, 300)
+_moveSpeed = 10.0
+
+[node name="MoveAction2" parent="Actions" instance=ExtResource("2_vshac")]
+_startPos = Vector2(351, 215)
+_endPos = Vector2(600, 215)
+_moveSpeed = 10.0
+
+[node name="Temp-actor" type="Sprite2D" parent="."]
+scale = Vector2(0.197778, 0.197778)
+texture = ExtResource("5_cq15c")
