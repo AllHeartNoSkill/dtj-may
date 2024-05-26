@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2tx2fc5x263d"
-path="res://.godot/imported/10_Vehicles_32x32.png-7433844903ea8c7d018e07e681a2cff2.ctex"
+uid="uid://c0ckwl64pva5w"
+path="res://.godot/imported/6_Music_and_sport_32x32.png-5ac372673501cd9fa02aa29082629bef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Env/10_Vehicles_32x32.png"
-dest_files=["res://.godot/imported/10_Vehicles_32x32.png-7433844903ea8c7d018e07e681a2cff2.ctex"]
+source_file="res://Assets/Env/Interior/6_Music_and_sport_32x32.png"
+dest_files=["res://.godot/imported/6_Music_and_sport_32x32.png-5ac372673501cd9fa02aa29082629bef.ctex"]
 
 [params]
 

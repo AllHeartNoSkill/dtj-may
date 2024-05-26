@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcp1jgr38r35u"
-path="res://.godot/imported/3_City_Props_32x32.png-6d4c7594ee35630edf6320f665239765.ctex"
+uid="uid://bscujhq30grba"
+path="res://.godot/imported/clock.png-927b1b4a0ccdd2d8c050a07049ea28bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Env/3_City_Props_32x32.png"
-dest_files=["res://.godot/imported/3_City_Props_32x32.png-6d4c7594ee35630edf6320f665239765.ctex"]
+source_file="res://Assets/Item/clock.png"
+dest_files=["res://.godot/imported/clock.png-927b1b4a0ccdd2d8c050a07049ea28bd.ctex"]
 
 [params]
 

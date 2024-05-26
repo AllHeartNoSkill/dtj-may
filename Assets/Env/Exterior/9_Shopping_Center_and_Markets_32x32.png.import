@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diq52oqobqjxo"
-path="res://.godot/imported/5_Floor_Modular_Buildings_32x32.png-f9021e03051c82c38266dc0a59e6c72f.ctex"
+uid="uid://12xsbj8eijs6"
+path="res://.godot/imported/9_Shopping_Center_and_Markets_32x32.png-fe17d24e17c41a9980dfebb4881f5a6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Env/5_Floor_Modular_Buildings_32x32.png"
-dest_files=["res://.godot/imported/5_Floor_Modular_Buildings_32x32.png-f9021e03051c82c38266dc0a59e6c72f.ctex"]
+source_file="res://Assets/Env/Exterior/9_Shopping_Center_and_Markets_32x32.png"
+dest_files=["res://.godot/imported/9_Shopping_Center_and_Markets_32x32.png-fe17d24e17c41a9980dfebb4881f5a6d.ctex"]
 
 [params]
 

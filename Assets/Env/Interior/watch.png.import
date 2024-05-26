@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://12xsbj8eijs6"
-path="res://.godot/imported/9_Shopping_Center_and_Markets_32x32.png-210fd7e2e1372b11388ae834828a8858.ctex"
+uid="uid://dv8ocxwot12rh"
+path="res://.godot/imported/watch.png-aee70434183ff9cef012e88dd42cd6ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Env/9_Shopping_Center_and_Markets_32x32.png"
-dest_files=["res://.godot/imported/9_Shopping_Center_and_Markets_32x32.png-210fd7e2e1372b11388ae834828a8858.ctex"]
+source_file="res://Assets/Env/Interior/watch.png"
+dest_files=["res://.godot/imported/watch.png-aee70434183ff9cef012e88dd42cd6ff.ctex"]
 
 [params]
 
