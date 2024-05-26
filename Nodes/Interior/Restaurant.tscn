@@ -1,6 +1,57 @@
-[gd_scene load_steps=2 format=3 uid="uid://daihqp0fb3h45"]
+[gd_scene load_steps=10 format=3 uid="uid://daihqp0fb3h45"]
 
 [ext_resource type="TileSet" uid="uid://brinclsgwdo2c" path="res://Nodes/Interior/Interior.tres" id="1_d0cfq"]
+[ext_resource type="Texture2D" uid="uid://7ehm7cjjqcsx" path="res://Assets/NPC/Cleaner_girl_idle_anim_32x32.png" id="2_xlht6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryeqd"]
+atlas = ExtResource("2_xlht6")
+region = Rect2(576, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhshd"]
+atlas = ExtResource("2_xlht6")
+region = Rect2(608, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nopg"]
+atlas = ExtResource("2_xlht6")
+region = Rect2(640, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvp5b"]
+atlas = ExtResource("2_xlht6")
+region = Rect2(672, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34kif"]
+atlas = ExtResource("2_xlht6")
+region = Rect2(704, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoisn"]
+atlas = ExtResource("2_xlht6")
+region = Rect2(736, 16, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjfvq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryeqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhshd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nopg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvp5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34kif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoisn")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 8.0
+}]
 
 [node name="Restaurant" type="Node2D"]
 
@@ -34,3 +85,11 @@ layer_0/tile_data = PackedInt32Array(1179648, 720899, 54, 1179649, 589827, 53, 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(18, 579, 61, 578, 62, 617, 158, 616, 158, 672, 225, 673, 223, 351, 288, 352, 288, 284, 112, 285, 112, 323, 158, 323, 158, 510, -2, 509, -29, 165, 413, 171, 381, 736, -39, 729, -15, 579)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(176, 302)
+sprite_frames = SubResource("SpriteFrames_vjfvq")
+animation = &"new_animation"
+frame_progress = 0.352721

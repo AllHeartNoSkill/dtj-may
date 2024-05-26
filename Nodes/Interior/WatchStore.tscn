@@ -1,7 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://ioev1la01ykw"]
+[gd_scene load_steps=11 format=3 uid="uid://ioev1la01ykw"]
 
 [ext_resource type="TileSet" uid="uid://brinclsgwdo2c" path="res://Nodes/Interior/Interior.tres" id="1_cajqp"]
 [ext_resource type="Texture2D" uid="uid://dv8ocxwot12rh" path="res://Assets/Env/Interior/watch.png" id="2_4bcap"]
+[ext_resource type="Texture2D" uid="uid://bf12t05lstyrx" path="res://Assets/NPC/Samuel_idle_anim_32x32.png" id="2_2506n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evuob"]
+atlas = ExtResource("2_2506n")
+region = Rect2(576, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88fxv"]
+atlas = ExtResource("2_2506n")
+region = Rect2(608, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2d2e"]
+atlas = ExtResource("2_2506n")
+region = Rect2(640, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yw0i"]
+atlas = ExtResource("2_2506n")
+region = Rect2(672, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4b3y"]
+atlas = ExtResource("2_2506n")
+region = Rect2(704, 16, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im4qg"]
+atlas = ExtResource("2_2506n")
+region = Rect2(736, 16, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4eq1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evuob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88fxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2d2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yw0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4b3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im4qg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="WatchStore" type="Node2D"]
 
@@ -10,10 +61,22 @@ tile_set = ExtResource("1_cajqp")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1179651, 49, 65536, 1179651, 50, 1, 1245187, 51, 65537, 1245187, 52, 2, 1310723, 51, 65538, 1310723, 52, 3, 1245187, 51, 65539, 1245187, 52, 4, 1310723, 51, 65540, 1310723, 52, 5, 1245187, 51, 65541, 1245187, 52, 6, 1376259, 49, 65542, 1376259, 50, 131078, 1376259, 51, 196614, 1376259, 51, 262150, 1376259, 51, 327686, 1376259, 51, 393222, 1376259, 51, 131072, 1179651, 51, 196608, 1179651, 51, 262144, 1179651, 51, 327680, 1179651, 51, 393216, 1179651, 51, 524290, 1441795, 54, 458755, 1310723, 54, 458756, 1310723, 54, 458757, 1310723, 54, 458758, 1310723, 54, 458752, 1114115, 54, 524288, 1114115, 54, 131073, 4, 28, 196609, 4, 29, 262145, 4, 29, 327681, 4, 29, 393217, 4, 29, 458753, 4, 29, 524289, 4, 29, 131074, 65540, 28, 131075, 65540, 29, 131076, 65540, 28, 131077, 65540, 28, 196610, 65540, 29, 196611, 65540, 29, 196612, 65540, 29, 196613, 65540, 29, 262149, 65540, 29, 327685, 65540, 29, 393221, 65540, 29, 393220, 65540, 29, 327684, 65540, 29, 262148, 65540, 29, 262147, 65540, 29, 262146, 65540, 29, 327682, 65540, 29, 327683, 65540, 29, 393219, 65540, 29, 393218, 65540, 29, 458754, 65540, 29)
 
+[node name="TileMap1_5" type="TileMap" parent="."]
+tile_set = ExtResource("1_cajqp")
+format = 2
+layer_0/tile_data = PackedInt32Array(1, 327681, 8, 2, 393217, 8, 3, 1, 48, 65539, 1, 49, 4, 131074, 20, 65540, 131074, 21, 5, 196610, 20, 65541, 196610, 21)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(146, 62)
+sprite_frames = SubResource("SpriteFrames_4eq1b")
+frame_progress = 0.764404
+
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource("1_cajqp")
 format = 2
-layer_0/tile_data = PackedInt32Array(131074, 1, 23, 196610, 1, 24, 131075, 65537, 23, 196611, 65537, 24, 131076, 65537, 23, 196612, 65537, 24, 131077, 65537, 23, 196613, 65537, 24, 262149, 458753, 56, 327685, 458753, 57, 393221, 458753, 58, 327683, 131081, 7, 393219, 131081, 8, 327684, 196617, 7, 393220, 196617, 8, 4, 131074, 20, 65540, 131074, 21, 5, 196610, 20, 65541, 196610, 21, 131078, 131073, 23, 196614, 131073, 24, 3, 1, 48, 65539, 1, 49, 1, 327681, 8, 2, 393217, 8)
+layer_0/tile_data = PackedInt32Array(196610, 1, 24, 196611, 65537, 24, 196612, 65537, 24, 196613, 65537, 24, 262149, 458753, 56, 327685, 458753, 57, 393221, 458753, 58, 327683, 131081, 7, 393219, 131081, 8, 327684, 196617, 7, 393220, 196617, 8, 196614, 131073, 24, 131074, 1, 23, 131075, 65537, 23, 131076, 65537, 23, 131077, 65537, 23, 131078, 131073, 23)
 
 [node name="TileMap3" type="TileMap" parent="."]
 tile_set = ExtResource("1_cajqp")
@@ -28,7 +91,7 @@ texture = ExtResource("2_4bcap")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(90, 74, 90, 115, 195, 114, 196, 73)
+polygon = PackedVector2Array(90, 84, 90, 115, 195, 114, 195, 84)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(70, 288, 69, 224, 95, 223, 94, 181, 194, 181, 194, 60, 30, 63, 29, 288, -21, 288, -18, -31, 262, -36, 267, 293)
