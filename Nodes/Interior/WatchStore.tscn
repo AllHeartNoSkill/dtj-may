@@ -26,6 +26,7 @@ scale = Vector2(0.703125, 0.703125)
 texture = ExtResource("2_4bcap")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(90, 74, 90, 115, 195, 114, 196, 73)

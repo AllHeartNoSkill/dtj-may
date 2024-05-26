@@ -33,4 +33,16 @@ public partial class GameEvents : Node
     {
         OnActivateButtonTimeline?.Invoke(id);
     }
+
+    public Action<string> OnEnterZone;
+    public void EnterZone(string zoneName)
+    {
+        OnEnterZone?.Invoke(zoneName);
+    }
+    
+    public Action<string> OnExitZone;
+    public void ExitZone(string zoneName)
+    {
+        OnExitZone?.Invoke(zoneName);
+    }
 }
