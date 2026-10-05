@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Systems/Main.cs" id="1_o1c8u"]
 [ext_resource type="Script" path="res://Scripts/Systems/TimelineHandler.cs" id="2_2huai"]
-[ext_resource type="PackedScene" path="res://Nodes/Env.tscn" id="2_c8raq"]
+[ext_resource type="PackedScene" uid="uid://dwjyaddr01l3i" path="res://Nodes/Env.tscn" id="2_c8raq"]
 [ext_resource type="PackedScene" uid="uid://bvympkedfyhh6" path="res://Nodes/Prefabs/Timeline.tscn" id="3_qrrv8"]
 [ext_resource type="Script" path="res://Scripts/Zone/Zone.cs" id="4_5a6xk"]
 [ext_resource type="Script" path="res://Scripts/Libs/GameEvents.cs" id="4_cgmsr"]
